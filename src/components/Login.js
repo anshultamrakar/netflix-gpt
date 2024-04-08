@@ -1,14 +1,13 @@
-import Header from "./Header"
+import Headers from "./Header"
 
 const Login = () => {
     return(
-     <div className="">
-        <Header className="absolute inset-0 z-10 w-full" />
-        <div className="absolute">
-            <span className="bg-black absolute inset-0 opacity-50"></span>
-            <img src = "https://assets.nflxext.com/ffe/siteui/vlv3/2e07bc25-8b8f-4531-8e1f-7e5e33938793/e4b3c14a-684b-4fc4-b14f-2b486a4e9f4e/IN-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt = "banner"/>
+        <div>
+          <Headers/>
+          <img src = "https://assets.nflxext.com/ffe/siteui/vlv3/6cefb2f5-90be-4f57-adc4-f6c3c579273d/3943990c-f4e0-4147-82ad-f531e2b547f3/IN-en-20240401-popsignuptwoweeks-perspective_alpha_website_large.jpg"/>
         </div>
-     </div>
     )
 }
+
+
 export default Login

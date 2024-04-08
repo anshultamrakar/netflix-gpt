@@ -6,7 +6,6 @@
 # Feature
 - Login SignUp
 - redirect to browser page
-
 - Browse(after auth)
 - Header
 - Main Movie
@@ -14,7 +13,6 @@
    - Title and Description
    - Movie suggestions
      -MovieList * N 
-
 -Netflix GPT
 - Search bar
--  Movie Suggestion 
+- Movie Suggestion 

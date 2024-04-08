@@ -1,7 +1,6 @@
-import Body from "./components/Body"
+import Body from "./components/Body";
 
-
-const App = () =>  {
+function App(){
   return (
    <div>
     <Body/>
