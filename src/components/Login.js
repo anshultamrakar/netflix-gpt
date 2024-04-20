@@ -1,6 +1,8 @@
 import { useState , useRef } from "react"
 import { checkValidate } from "../utils/Validate"
 import Headers from "./Header"
+import { auth } from "../utils/Firebase"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 
 const Login = () => {
   const [isSignInForm , setIsSignInForm] = useState(true) 
@@ -8,17 +10,40 @@ const Login = () => {
   const email = useRef(null)
   const password = useRef(null)
 
-
-
   const handleButtonClick = () => {
     const message = checkValidate(email.current.value , password.current.value)
     setErrorMessage(message)
+    if(message) return 
+    
+    if(!isSignInForm){
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode + "" + errorMessage)
+  });
+    }else{
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode + "" + errorMessage)
+  });
+    }
   }
-
 
   const handleToggleSignInForm = () => {
     setIsSignInForm(!isSignInForm)
   }
+
     return(
         <div>
           <Headers/>
@@ -31,10 +56,9 @@ const Login = () => {
             <input type = "text" placeholder="Email Address" className="p-2 my-4  w-full bg-gray-700" ref ={email}/>
             <input type = "password" placeholder="Password" className="p-2 my-4  w-full bg-gray-700" ref ={password}/>
             <button onClick={handleButtonClick} className="p-4 my-6 bg-red-700 rounded w-full">{isSignInForm ? "Sign In" : "Sign Up"}</button>
-            <p className="text-red-950">{errorMessage}</p>
+            <p className="text-red-500">{errorMessage}</p>
             <p onClick={handleToggleSignInForm} className="py-4 cursor-pointer">{isSignInForm ? "New to Netflix? Sign Up Now" : "Alredy Registered? Sign In Now" }</p>
-          </form>
-         
+          </form> 
         </div>
     )
 }
